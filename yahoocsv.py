@@ -1,7 +1,6 @@
 import yfinance as yf
 import sys
 
-
 def main():
     if len(sys.argv) == 4:
         try:
@@ -15,10 +14,17 @@ def main():
         period = input("period: ")
         interval = input("interval: ")
 
-        
-    data = yf.download("SPY", period = "20y", interval = "1d")
+    getdata(symbol, period, interval)
+
+
+
+def getdata(symbol, period, interval):
+            
+    data = yf.download(f"{symbol}", period = f"{period}", interval = f"{interval}")
 
     data.to_csv(f"{symbol}_{period}_{interval}.csv")
+    
+    return f"{symbol}_{period}_{interval}.csv"
 
 
 if __name__=="__main__":
