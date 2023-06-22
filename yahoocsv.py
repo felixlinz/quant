@@ -19,9 +19,11 @@ def main():
 
 
 def getdata(symbol, period, interval):
-            
-    data = yf.download(f"{symbol}", period = f"{period}", interval = f"{interval}")
-
+    try:       
+        data = yf.download(f"{symbol}", period = f"{period}", interval = f"{interval}")
+    except:
+        raise ValueError("ivalid symbol specification")
+    
     data.to_csv(f"{symbol}_{period}_{interval}.csv")
     
     return f"{symbol}_{period}_{interval}.csv"
